@@ -1,0 +1,19 @@
+# source link https://faun.pub/docker-letsencrypt-dns-validation-75ba8c08a0d
+version: '3'
+services:
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=fayatit.com
+      - SUBDOMAINS=meet
+      - VALIDATION=dns
+      - DNSPLUGIN=route53
+      - EMAIL=mouaad@gmail.com
+      - DHLEVEL=4096
+    volumes:
+      - /home/ubuntu/conf:/config
+    restart: unless-stopped
